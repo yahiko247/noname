@@ -16,13 +16,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import LogoutIcon from '@mui/icons-material/Logout';
 import OtherHousesIcon from '@mui/icons-material/OtherHouses';
 import Person3Icon from '@mui/icons-material/Person3';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom';
+import { Button, Card, CardActions, CardMedia, CardContent, Container } from '@mui/material';
+import { BarChart } from '@mui/x-charts/BarChart';
 
 const drawerWidth = 240;
 
@@ -71,7 +71,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
- function Home() {
+function Home() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -98,7 +98,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-           <strong>CRYPTO THE DOG</strong>
+            <strong>CRYPTO THE DOG</strong>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -124,9 +124,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
         <List>
           {['Home', 'Profile', 'Settings'].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton component={Link} to={index === 0 ? '/' : index === 1 ? '/profile' : '/settings'}>
                 <ListItemIcon>
-                  {index  === 0 ? <OtherHousesIcon /> : index === 1 ? <Person3Icon /> : <SettingsIcon/> }
+                  {index === 0 ? <OtherHousesIcon /> : index === 1 ? <Person3Icon /> : <SettingsIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
@@ -135,25 +135,154 @@ const DrawerHeader = styled('div')(({ theme }) => ({
         </List>
         <Divider />
         <List>
-            {['Logout'].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ marginX: 2, marginY: 20}}>
-                  <ListItemIcon>
-                    <Link to="/">
-                      <LogoutIcon />
-                  </Link>
-                 </ListItemIcon>
-              </ListItem>
-             ))}
-          </List>
+          <ListItem disablePadding sx={{ marginX: 2, marginY: 20 }}>
+            <ListItemIcon>
+              <Link to="/">
+                <LogoutIcon />
+              </Link>
+            </ListItemIcon>
+          </ListItem>
+        </List>
       </Drawer>
-      <Main open={open} sx={{ backgroundColor: 'grey'}}>
-        <DrawerHeader />
-        <Typography paragraph sx={{ backgroundColor: 'grey'}}>
-          <Link to={'/test'}> background</Link>
-        </Typography>
-        <Typography paragraph>
-          
-        </Typography>
+      <Main open={open} sx={{ backgroundColor: '#455a64', flexGrow: 1, overflow: 'auto' }}>
+        <div  className="contain-mui" style={{height:'110vh', backgroundColor:'gray', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 4)'}}>
+          <Container  className="contain-mui2" style={{display:'flex', width:'100', marginTop:'60px', justifyContent:'center'}}>
+          <Card className='card' sx={{ maxWidth: '100%', margin: '10px', marginTop:'50px' }}>
+              <CardMedia
+                className='card2'
+                sx={{ height: 140 }}
+                component="img"
+                src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg"
+                alt="Description of the image"
+                title="green iguana"
+              />
+              <CardContent className='CardActions'>
+                <Typography gutterBottom variant="h5" component="div">
+                  Metamask
+                </Typography>
+              </CardContent>
+              <CardActions> 
+                <Button size="small">Share</Button>
+                <Button size="small" component={Link} to="https://metamask.io/" style={{ textDecoration: 'none', color: 'green' }}>Learn More</Button>
+              </CardActions>
+            </Card>
+            <Card className='card' sx={{ maxWidth: '100%', margin:'10px', marginTop:'50px' }}>
+              <CardMedia
+                className='card2'
+                sx={{ height: 140 }}
+                component="img"
+                src="https://upload.wikimedia.org/wikipedia/commons/8/82/Trust_Wallet_Token.png"
+                alt="Description of the image"
+                title="green iguana"/>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                   Trust wallet
+                  </Typography>
+                </CardContent>
+              <CardActions>
+                  <Button size="small">Share</Button>
+                  <Button size="small"><Link to='https://trustwallet.com/press'style={{textDecoration:'none', color:'green'}}>Learn More</Link></Button>
+              </CardActions>
+            </Card>
+            <Card className='card' sx={{ width: '100', margin:'10px',  marginTop:'50px'}}>
+              <CardMedia
+                className='card2'
+                sx={{ height: 140 }}
+                component="img"
+                src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg"
+                alt="Description of the image"
+                title="green iguana"/>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    BitCoin
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Share</Button>
+                    <Button size="small"><Link to='https://bitcoin.org/en/'style={{textDecoration:'none', color:'green'}}>Learn More</Link></Button>
+                </CardActions>
+            </Card>
+
+          <Card className='card' sx={{ width: '100', margin:'10px', marginTop:'50px' }}>
+            <CardMedia
+            className='card2'
+            sx={{ height: 140 }}
+            component="img"
+            src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_Icon_2014.svg"
+            alt="Description of the image"
+            title="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                PayPal
+              </Typography>
+            </CardContent>
+            <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small"><Link to='https://www.paypal.com/ph/home'style={{textDecoration:'none', color:'green'}}>Learn More</Link></Button>
+            </CardActions>
+          </Card>
+        </Container>
+      <Container className='contain-mui3' style={{display:'flex', justifyContent:'center'}}>
+      <Card className='card' sx={{ width: '100', margin:'10px', marginTop:'50px' }}>
+          <CardMedia
+            className='card2'
+            sx={{ height: 140 }}
+            component="img"
+            src="https://upload.wikimedia.org/wikipedia/commons/b/be/VeKings.png"
+            alt="Description of the image"
+            title="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              NFT
+            </Typography>
+           </CardContent>
+           <CardActions>
+              <Button size="small">Share</Button>
+              <Button size="small"><Link to='https://auranft.co/?https://auranft.co/?utm_source=GoogleSearch&utm_medium=cpc&utm_campaign=GoogleSearch_Aura&gclid=Cj0KCQiA5rGuBhCnARIsAN11vgS2Q7vNIrW01YOdc8uU3wHXybZArTKzKH6W8y1EezkyKp-Kdo6WL98aAuTmEALw_wcB'style={{textDecoration:'none', color:'green'}}>Learn More</Link></Button>
+          </CardActions>
+        </Card>
+        <Card className='card' sx={{ width: '100', margin:'10px', marginTop:'50px'}}>
+          <CardMedia
+            className='card2'
+            sx={{ height: 140 }}
+            component="img"
+            src="https://upload.wikimedia.org/wikipedia/commons/0/02/Metacraft_round.jpg"
+            alt="Description of the image"
+            title="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+               CRYPTO
+            </Typography>
+           </CardContent>
+           <CardActions>
+              <Button size="small">Share</Button>
+              <Button size="small"><Link to='https://crypto.com/'style={{textDecoration:'none', color:'green'}}>Learn More</Link></Button>
+          </CardActions>
+        </Card>
+        <Card className='card' sx={{ width: '100', margin:'10px',  marginTop:'50px' }}>
+          <CardMedia
+           className='card2'
+           sx={{ height: 140 }}
+           component="img"
+           src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
+           alt="Description of the image"
+           title="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              GitHub
+            </Typography>
+           </CardContent>
+           <CardActions>
+              <Button size="small">Share</Button>
+              <Button size="small"><Link to='https://github.com/'style={{textDecoration:'none', color:'green'}}>Learn More</Link></Button>
+          </CardActions>
+        </Card>
+      </Container>
+      </div>
       </Main>
     </Box>
   );
